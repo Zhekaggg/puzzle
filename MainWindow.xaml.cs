@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,8 +13,8 @@ namespace PuzzleGame
 {
     public partial class MainWindow : Window
     {
-        private const int Rows = 3;
-        private const int Columns = 3;
+        private int Rows = 5;
+        private int Columns = 5;
         private readonly List<Image> puzzlePieces = new List<Image>();
         private readonly Random random = new Random();
         private BitmapImage selectedImage;
@@ -70,6 +71,9 @@ namespace PuzzleGame
                 int index = indices[i];
                 canvas.Children.Remove(piece);
                 canvas.Children.Insert(index, piece);
+
+                // Устанавливаем Z-index в зависимости от правильности вставки пазла
+                Canvas.SetZIndex(piece, index); // Правильные пазлы будут ниже
             }
         }
 
@@ -78,14 +82,20 @@ namespace PuzzleGame
             double pieceWidth = canvas.ActualWidth / Columns;
             double pieceHeight = canvas.ActualHeight / Rows;
 
+            List<Image> shuffledPuzzlePieces = puzzlePieces.OrderBy(x => random.Next()).ToList();
+
+            double windowWidth = this.ActualWidth; // Ширина окна
+            double windowHeight = this.ActualHeight; // Высота окна
+
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
                 {
                     int index = i * Columns + j;
-                    Image piece = puzzlePieces[index];
-                    double left = j * pieceWidth + random.NextDouble() * (pieceWidth / 2);
-                    double top = i * pieceHeight + random.NextDouble() * (pieceHeight / 2);
+                    Image piece = shuffledPuzzlePieces[index];
+                    // Начальные координаты в правой части окна и немного выше
+                    double left = windowWidth * 3 / 4 - pieceWidth / 2 + random.NextDouble() * 100 - 50;
+                    double top = windowHeight / 4 - pieceHeight / 2 + random.NextDouble() * 100 - 50;
                     piece.Width = pieceWidth;
                     piece.Height = pieceHeight;
                     Canvas.SetLeft(piece, left);
@@ -94,15 +104,40 @@ namespace PuzzleGame
             }
         }
 
+
+
         private void PuzzlePiece_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Image puzzlePiece = sender as Image;
             if (puzzlePiece != null)
             {
-                Canvas.SetZIndex(puzzlePiece, Canvas.GetZIndex(imagePlaceholder) + 1); // Bring puzzle piece to the top
+                // Перемещаем пазл сверху всех остальных
+                BringToFront(puzzlePiece);
+
+                // Захватываем пазл мышью
                 puzzlePiece.CaptureMouse();
             }
         }
+
+        private void BringToFront(Image puzzlePiece)
+        {
+            // Получаем текущий индекс Z пазла
+            int currentIndex = Canvas.GetZIndex(puzzlePiece);
+
+            // Перемещаем пазл в самый верх по Z-Index
+            int maxIndex = canvas.Children.Cast<UIElement>().Max(x => Canvas.GetZIndex(x));
+            Canvas.SetZIndex(puzzlePiece, maxIndex + 1);
+
+            // Перемещаем неправильно вставленные пазлы ниже по Z-Index
+            foreach (Image piece in puzzlePieces)
+            {
+                if (piece != puzzlePiece && Canvas.GetZIndex(piece) > currentIndex)
+                {
+                    Canvas.SetZIndex(piece, Canvas.GetZIndex(piece) - 1);
+                }
+            }
+        }
+
 
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
@@ -126,6 +161,25 @@ namespace PuzzleGame
             if (puzzlePiece != null)
             {
                 puzzlePiece.ReleaseMouseCapture();
+
+                // Находим координаты верхнего левого угла ячейки, на которую пазл должен быть выровнен
+                double cellWidth = canvas.ActualWidth / Columns;
+                double cellHeight = canvas.ActualHeight / Rows;
+                int row = (int)Math.Round(Canvas.GetTop(puzzlePiece) / cellHeight);
+                int col = (int)Math.Round(Canvas.GetLeft(puzzlePiece) / cellWidth);
+
+                // Вычисляем ожидаемые координаты пазла
+                double expectedLeft = col * cellWidth;
+                double expectedTop = row * cellHeight;
+
+                // Проверяем, находится ли пазл достаточно близко к своему месту
+                if (Math.Abs(Canvas.GetLeft(puzzlePiece) - expectedLeft) <= cellWidth / 2 &&
+                    Math.Abs(Canvas.GetTop(puzzlePiece) - expectedTop) <= cellHeight / 2)
+                {
+                    // Перемещаем пазл на свое место
+                    Canvas.SetLeft(puzzlePiece, expectedLeft);
+                    Canvas.SetTop(puzzlePiece, expectedTop);
+                }
             }
         }
 
@@ -187,6 +241,7 @@ namespace PuzzleGame
                         break;
                     }
                 }
+
             }
 
             if (isCorrect)
@@ -197,6 +252,22 @@ namespace PuzzleGame
             {
                 MessageBox.Show("ээ не правельно");
             }
+        }
+        private void NumberOfPiecesButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Создаем новое окно выбора количества пазлов
+            PuzzlePiecesDialog dialog = new PuzzlePiecesDialog();
+
+            // Подписываемся на событие изменения количества пазлов
+            dialog.PuzzlePiecesChanged += (horizontal, vertical) =>
+            {
+                Columns = horizontal; // Устанавливаем количество колонок
+                Rows = vertical; // Устанавливаем количество строк
+                InitializePuzzle(); // Пересоздаем пазл с новыми параметрами
+            };
+
+            // Показываем диалоговое окно
+            dialog.ShowDialog();
         }
     }
 }
