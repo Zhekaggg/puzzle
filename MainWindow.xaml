@@ -7,12 +7,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-            <Button Content=" Выбрать фото " Click="ChoosePhotoButton_Click" Width="296" Height="25"/>
-            <Button Content="проверка" Click="CheckButton_Click" Width="296" Height="25"/>
-            <Button Content="количество пазлов" Height="25" Width="296" Click="NumberOfPiecesButton_Click"/>
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,634" Grid.RowSpan="2">
+            <Button Content=" Выбрать фото " Click="ChoosePhotoButton_Click" Width="296" Height="40"/>
+            <Button Content="проверка" Click="CheckButton_Click" Width="296" Height="40"/>
+            <Button Content="количество пазлов" Height="40" Width="296" Click="NumberOfPiecesButton_Click"/>
         </StackPanel>
-        <Canvas Name="canvas" Grid.Row="1" Background="LightGray" MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp" Margin="27,0,354,171">
+        <Canvas Name="canvas" Grid.Row="1" Background="LightGray" MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp" Margin="0,104,381,104">
             <Image Name="imagePlaceholder" Stretch="Fill"/>
         </Canvas>
     </Grid>

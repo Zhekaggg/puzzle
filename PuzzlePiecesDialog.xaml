@@ -1,23 +1,25 @@
 <Window x:Class="PuzzleGame.PuzzlePiecesDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Выберите количество пазлов" SizeToContent="WidthAndHeight">
-    <Grid Height="100" Width="324" RenderTransformOrigin="0.585,0.51">
+        Title="Выберите количество пазлов" SizeToContent="WidthAndHeight" Height="165">
+    <Grid Width="324" RenderTransformOrigin="0.585,0.51" Margin="0,0,0,1">
         <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
             <RowDefinition/>
-            <RowDefinition Height="Auto" MinHeight="48"/>
+            <RowDefinition Height="54"/>
+            <RowDefinition Height="41.04"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="14*"/>
-            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="14.6*"/>
+            <ColumnDefinition Width="13.5*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Количество по горизонтали:" Margin="5,5,5,5"/>
-        <TextBlock Text="Количество по вертикали:" Margin="5,5,5,5" Grid.Row="1"/>
-        <TextBox x:Name="HorizontalTextBox" Text="5" Margin="116,8,0,8" Grid.Column="1" HorizontalAlignment="Left" Width="30"/>
-        <TextBox x:Name="VerticalTextBox" Text="5" Margin="116,10,10,9" Grid.Row="1" Grid.Column="1"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="158,11,0,9" Grid.Row="1" Width="128" Grid.ColumnSpan="2">
-            <Button Content="Применить" Width="60" Click="ApplyButton_Click" Height="28"/>
-            <Button Content="Отмена" Width="65" Click="CancelButton_Click"/>
+        <TextBlock Text="Количество по горизонтали:" Margin="5,0,5,0" Grid.Row="1" Height="35" VerticalAlignment="Center"/>
+        <TextBlock Text="Количество по вертикали:" Margin="5,10,5,10" Grid.Row="2"/>
+        <TextBox x:Name="HorizontalTextBox" Text="5" Margin="116,10,0,8" Grid.Column="1" HorizontalAlignment="Left" Width="30" Grid.Row="1"/>
+        <TextBox x:Name="VerticalTextBox" Text="5" Margin="116,10,10,10" Grid.Row="2" Grid.Column="1"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,4,0,3" Grid.Row="3" Width="304" Grid.ColumnSpan="2">
+            <Button Content="Применить" Width="158" Click="ApplyButton_Click" Height="33"/>
+            <Button Content="Отмена" Width="146" Click="CancelButton_Click" Height="33"/>
         </StackPanel>
     </Grid>
 </Window>

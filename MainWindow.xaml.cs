@@ -76,7 +76,6 @@ namespace PuzzleGame
                 Canvas.SetZIndex(piece, index); // Правильные пазлы будут ниже
             }
         }
-
         private void PositionPuzzlePieces()
         {
             double pieceWidth = canvas.ActualWidth / Columns;
@@ -84,22 +83,27 @@ namespace PuzzleGame
 
             List<Image> shuffledPuzzlePieces = puzzlePieces.OrderBy(x => random.Next()).ToList();
 
-            double windowWidth = this.ActualWidth; // Ширина окна
-            double windowHeight = this.ActualHeight; // Высота окна
+            int row = 0;
+            int col = 0;
 
-            for (int i = 0; i < Rows; i++)
+            foreach (Image piece in shuffledPuzzlePieces)
             {
-                for (int j = 0; j < Columns; j++)
+                // Вычисляем ближайшую ячейку канвы и выравниваем пазл по этой ячейке
+                double left = col * pieceWidth;
+                double top = row * pieceHeight;
+
+                piece.Width = pieceWidth;
+                piece.Height = pieceHeight;
+                Canvas.SetLeft(piece, left);
+                Canvas.SetTop(piece, top);
+
+                col++;
+                if (col >= Columns)
                 {
-                    int index = i * Columns + j;
-                    Image piece = shuffledPuzzlePieces[index];
-                    // Начальные координаты в правой части окна и немного выше
-                    double left = windowWidth * 3 / 4 - pieceWidth / 2 + random.NextDouble() * 100 - 50;
-                    double top = windowHeight / 4 - pieceHeight / 2 + random.NextDouble() * 100 - 50;
-                    piece.Width = pieceWidth;
-                    piece.Height = pieceHeight;
-                    Canvas.SetLeft(piece, left);
-                    Canvas.SetTop(piece, top);
+                    col = 0;
+                    row++;
+                    if (row >= Rows)
+                        row = 0;
                 }
             }
         }
