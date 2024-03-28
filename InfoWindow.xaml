@@ -1,0 +1,23 @@
+<Window x:Class="PuzzleGame.InfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Info" Height="686" Width="524">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <!-- Разместите здесь ваш текст или любые другие элементы управления для информации -->
+            <TextBlock Text="РУКАВОДСТВА ИГРА ПАЗЛ" HorizontalAlignment="Center" Margin="0,0,0,515" FontSize="20" Grid.Column="1" />
+            <TextBlock HorizontalAlignment="Center" Margin="0,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="380" Grid.Column="1"><Run Language="ru-ru" Text="1 кнопка это &quot;выбор фото&quot;  вы можете выбрать своё фото для игры в пазл. "/></TextBlock>
+            <Image HorizontalAlignment="Center" Height="48" Margin="0,74,0,0" VerticalAlignment="Top" Width="184" Source="C:\Users\POXvala\Pictures\Screenshots\Снимок экрана 2024-03-28 151334.png" Grid.Column="1"/>
+            <Image HorizontalAlignment="Center" Height="212" Margin="0,125,0,0" VerticalAlignment="Top" Width="381" Source="C:\Users\POXvala\Pictures\Screenshots\Снимок экрана 2024-03-28 151357.png" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,555,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="81" Width="376"><Run Text="При выборе фото оно автоматически делится на 5 на 5 частей. Если вы хотите увеличить количество пазлов, вы можете нажать на кнопку “Количество пазлов”. Появится окно, где будет два выбора: “по вертикали” и “по горизонтали”, и ограничения по пазлам — это от 3 до 10"/><Run Language="ru-ru" Text="."/></TextBlock>
+            <Image HorizontalAlignment="Center" Height="84" Margin="0,660,0,0" VerticalAlignment="Top" Width="282" Source="C:\Users\POXvala\Pictures\Screenshots\Снимок экрана 2024-03-28 153600.png"/>
+            <Image HorizontalAlignment="Center" Height="165" Margin="0,748,0,0" VerticalAlignment="Top" Width="320" Source="C:\Users\POXvala\Pictures\Screenshots\Снимок экрана 2024-03-28 153606.png"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,930,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="65" Width="375"><Run Text="Если вы уверены что правильно собрали пазл то вы можете нажать кнопку &quot;Проверка&quot;. "/><Run Language="ru-ru" Text="Е"/><Run Text="сли правильно то будет выходить сообщения &quot;"/><Run Language="ru-ru" Text="бля молодец&quot;, а если не правильно то &quot;ээ не правильно&quot; "/></TextBlock>
+            <Image Height="200" Source="C:\Users\POXvala\Pictures\Screenshots\Снимок экрана 2024-03-28 160000.png"  Width="380" Margin="60,350,60,749"/>
+            <Image HorizontalAlignment="Left" Height="100" Margin="146,1028,0,0" VerticalAlignment="Top" Width="100" Source="C:\Users\POXvala\Pictures\Screenshots\Снимок экрана 2024-03-28 160646.png"/>
+            <Image HorizontalAlignment="Left" Height="100" Margin="250,1028,0,0" VerticalAlignment="Top" Width="100" Source="C:\Users\POXvala\Pictures\Screenshots\Снимок экрана 2024-03-28 160756.png"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,1172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="65" Width="376"><Run Language="ru-ru" Text="При появлении пазлов  вы сможете перетаскивать пазлы на игровое поле, чтобы собрать изображение. Удачи в сборке пазла! "/></TextBlock>
+
+        </Grid>
+    </ScrollViewer>
+</Window>

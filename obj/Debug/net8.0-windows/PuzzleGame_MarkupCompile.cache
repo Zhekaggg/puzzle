@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\POXvala\Desktop\ssss\PuzzleGame\PuzzleGame\App.xaml
-2-551286098
+3-670449291
 
-51560629131
+61289824535
 1981451641563
-MainWindow.xaml;PuzzlePiecesDialog.xaml;
+InfoWindow.xaml;MainWindow.xaml;PuzzlePiecesDialog.xaml;
 
 False
 

@@ -3,17 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Puzzle" Height="725" Width="1213">
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="906*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="306*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="69*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="611*"/>
+            <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="0,5,0,634" Grid.RowSpan="2">
-            <Button Content=" Выбрать фото " Click="ChoosePhotoButton_Click" Width="296" Height="40"/>
-            <Button Content="проверка" Click="CheckButton_Click" Width="296" Height="40"/>
-            <Button Content="количество пазлов" Height="40" Width="296" Click="NumberOfPiecesButton_Click"/>
+        <Rectangle Fill="LightGray" Grid.RowSpan="2"  Grid.ColumnSpan="4"/>
+        <StackPanel Orientation="Horizontal" Margin="-3,12,0,12" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Button Content=" Выбрать фото " Click="ChoosePhotoButton_Click" Width="299.5" Height="auto" />
+            <Button Content="Проверка" Click="CheckButton_Click" Width="299.5" Height="auto"/>
+            <Button Content="Количество пазлов" Height="auto" Width="299.5" Click="NumberOfPiecesButton_Click"/>
         </StackPanel>
-        <Canvas Name="canvas" Grid.Row="1" Background="LightGray" MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp" Margin="0,104,381,104">
+        <Button Content="?" Margin="83,12,83,12" Grid.RowSpan="2" Grid.Column="3" FontSize="20" Click="InfoButton_Click"/>
+
+        <Canvas Name="canvas" Grid.Row="2" Background="LightGray" MouseMove="Canvas_MouseMove" MouseUp="Canvas_MouseUp" Margin="0,29,0,103" Grid.ColumnSpan="3" Grid.RowSpan="2" >
             <Image Name="imagePlaceholder" Stretch="Fill"/>
         </Canvas>
+
     </Grid>
 </Window>

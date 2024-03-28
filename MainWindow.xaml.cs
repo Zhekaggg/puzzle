@@ -40,6 +40,16 @@ namespace PuzzleGame
             }
         }
 
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Создаем новое окно с информацией
+            InfoWindow infoWindow = new InfoWindow();
+
+            // Показываем окно
+            infoWindow.Show();
+        }
+
+
         private void ClearPuzzle()
         {
             foreach (Image piece in puzzlePieces)
@@ -254,7 +264,7 @@ namespace PuzzleGame
             }
             else
             {
-                MessageBox.Show("ээ не правельно");
+                MessageBox.Show("ээ не правильно");
             }
         }
         private void NumberOfPiecesButton_Click(object sender, RoutedEventArgs e)

@@ -19,3 +19,5 @@ C:\Users\POXvala\Desktop\ssss\PuzzleGame\PuzzleGame\obj\Debug\net8.0-windows\Puz
 C:\Users\POXvala\Desktop\ssss\PuzzleGame\PuzzleGame\obj\Debug\net8.0-windows\ref\PuzzleGame.dll
 C:\Users\POXvala\Desktop\ssss\PuzzleGame\PuzzleGame\obj\Debug\net8.0-windows\PuzzlePiecesDialog.baml
 C:\Users\POXvala\Desktop\ssss\PuzzleGame\PuzzleGame\obj\Debug\net8.0-windows\PuzzlePiecesDialog.g.cs
+C:\Users\POXvala\Desktop\ssss\PuzzleGame\PuzzleGame\obj\Debug\net8.0-windows\InfoWindow.baml
+C:\Users\POXvala\Desktop\ssss\PuzzleGame\PuzzleGame\obj\Debug\net8.0-windows\InfoWindow.g.cs
